@@ -1,9 +1,26 @@
-import React from 'react'
+import { Button, Typography } from "@mui/material";
+import { blueButton } from "../../styles/buttons";
+import CircularProgress from "@mui/material/CircularProgress";
 
-const BlueButton = () => {
+export const BlueButton = ({
+  children,
+  type,
+  buttonWidth,
+  buttonStartIcon,
+  onClick,
+  submitting,
+}) => {
   return (
-    <div>BlueButton</div>
-  )
-}
-
-export default BlueButton
+    <Button
+      type={type}
+      onClick={onClick}
+      startIcon={buttonStartIcon}
+      sx={{ ...blueButton, width: buttonWidth }}
+      disableElevation
+      disabled={submitting}
+    >
+      {submitting && <CircularProgress size={20} sx={{ color: "white" }} />}
+      <Typography ml={1}>{children}</Typography>
+    </Button>
+  );
+};
